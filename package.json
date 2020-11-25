@@ -1,0 +1,40 @@
+{
+  "name": "base-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec ts-node ./src/app/server.dev.ts",
+    "build": "tsc --build tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Finance-o-Matic/base-microservice.git"
+  },
+  "author": "PhelipeRocha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Finance-o-Matic/base-microservice/issues"
+  },
+  "homepage": "https://github.com/Finance-o-Matic/base-microservice#readme",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.0.0",
+    "@koa/cors": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa__cors": "^3.0.2",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}
