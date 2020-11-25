@@ -4,6 +4,8 @@ import json from 'koa-json'
 import BodyParser from 'koa-bodyparser'
 import cors from '@koa/cors'
 import router from './router/router'
+import errorHandler from './middleware/errorHandler'
+import routeNotFound from './middleware/routeNotFound'
 
 const initializeApp = () => {
   const app = new Koa()
@@ -12,9 +14,11 @@ const initializeApp = () => {
   app.use(BodyParser())
   app.use(logger())
   app.use(cors())
+  app.use(errorHandler())
 
   app.use(router.routes())
   app.use(router.allowedMethods())
+  app.use(routeNotFound())
 
   return app
 }
