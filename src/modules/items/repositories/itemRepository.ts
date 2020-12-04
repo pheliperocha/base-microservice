@@ -1,13 +1,14 @@
+import { GetItemParams } from '../controllers/getItemController'
 import { Item } from '../types'
 
 export interface IItemRepository {
-  get: () => Promise<Item[]>
+  get: (itemParams: GetItemParams) => Promise<Item[]>
 }
 
 export class ItemRepository implements IItemRepository {
   constructor(private readonly operationRepository: IItemRepository) { }
 
-  get = async (): Promise<Item[]> => {
-    return this.operationRepository.get()
+  get = async (itemParams: GetItemParams): Promise<Item[]> => {
+    return this.operationRepository.get(itemParams)
   }
 }
