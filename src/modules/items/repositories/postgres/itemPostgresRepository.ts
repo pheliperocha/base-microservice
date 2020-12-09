@@ -1,7 +1,7 @@
 import { IItemRepository } from '../itemRepository'
 import { ISequelize } from '../../../../app/database/sequelize'
 import { GetItemParams } from '../../controllers/getItemController'
-import { FindOptions, Op } from 'sequelize/types'
+import { FindOptions, Op } from 'sequelize'
 import { OrderDirection } from '../../../../utils/types'
 import { Item } from '../../types'
 
