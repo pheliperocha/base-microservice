@@ -395,3 +395,12 @@ export const statusCodeToReasonPhrase: Record<string, string> = {
   415: 'Unsupported Media Type',
   305: 'Use Proxy'
 }
+
+// https://www.jsonrpc.org/historical/json-rpc-over-http.html#errors
+export const mapJsonRpcErrorToHttpStatusCode = (code: number): StatusCodes => {
+  if (!code) return StatusCodes.INTERNAL_SERVER_ERROR
+  if (code === -32600) return StatusCodes.BAD_REQUEST
+  if (code === -32601) return StatusCodes.NOT_FOUND
+
+  return StatusCodes.INTERNAL_SERVER_ERROR
+}
