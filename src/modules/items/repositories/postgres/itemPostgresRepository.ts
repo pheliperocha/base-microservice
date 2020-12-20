@@ -4,6 +4,7 @@ import { GetItemParams } from '../../controllers/getItemController'
 import { FindOptions, Op } from 'sequelize'
 import { Operator, OrderDirection } from '../../../../utils/types'
 import { Item } from '../../types'
+import { CreateItemParams } from '../../controllers/createItemController'
 
 export class ItemPostgresRepository implements IItemRepository {
   constructor(private sequelize: ISequelize) { }
@@ -15,6 +16,17 @@ export class ItemPostgresRepository implements IItemRepository {
     const filter = this.getFilter(itemParams)
 
     return await Item.findAll(filter)
+  }
+
+  create = async (itemParams: CreateItemParams): Promise<Item> => {
+    const db = this.sequelize()
+    const { Item } = db
+
+    return await Item.create({
+      name: itemParams.name,
+      category: itemParams.category,
+      value: itemParams.value
+    })
   }
 
   private getFilter = (itemParams: GetItemParams): FindOptions<Item> => {
