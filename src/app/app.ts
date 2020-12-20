@@ -8,7 +8,8 @@ import errorHandler from './middleware/errorHandler'
 import routeNotFound from './middleware/routeNotFound'
 import { koaSwagger } from 'koa2-swagger-ui'
 import { swaggerOptions } from './router/swagger'
-import { baseConsumer } from './pubsub/rabbitmq'
+import { defineExchanges } from './pubsub/producer'
+import consumers from './pubsub/consumers'
 
 const initializeApp = () => {
   const app = new Koa()
@@ -25,7 +26,8 @@ const initializeApp = () => {
   app.use(router.allowedMethods())
   app.use(routeNotFound())
 
-  baseConsumer()
+  defineExchanges()
+  consumers()
 
   return app
 }

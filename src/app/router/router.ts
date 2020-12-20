@@ -14,5 +14,6 @@ router.get('/ping', async (ctx: Context) => {
 })
 
 router.get('/items', adaptRoute(getItemController()))
+router.get('/items/:id', adaptRoute(getItemController()))
 
 export default router

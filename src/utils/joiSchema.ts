@@ -2,8 +2,8 @@ import Joi from 'joi'
 import { Operator, OrderDirection } from './types'
 
 export const paginationSchema = () => ({
-  limit: Joi.number().min(0).default(0),
-  perPage: Joi.number().min(1).default(10)
+  limit: Joi.number().min(1).default(0),
+  skip: Joi.number().min(0).default(0)
 })
 
 export const orderSchema = <T>(fields: (keyof T)[] = []) => ({

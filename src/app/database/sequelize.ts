@@ -22,13 +22,14 @@ export interface ISequelize {
 
 export const sequelize: ISequelize = (): DbInterface => {
   // TODO: Get from centralize configs
-  const { POSTGRES_HOST, POSTGRES_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD } = process.env
+  const { POSTGRES_HOST, POSTGRES_DATABASE, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_PORT } = process.env
 
   const sequelize = new Sequelize({
     host: POSTGRES_HOST || 'localhost',
     database: POSTGRES_DATABASE || 'postgres',
     username: POSTGRES_USER || 'postgres',
     password: POSTGRES_PASSWORD || '123456',
+    port: (POSTGRES_PORT) ? +POSTGRES_PORT : 5432,
     dialect: 'postgres',
     logging: sequelizeLog
   })

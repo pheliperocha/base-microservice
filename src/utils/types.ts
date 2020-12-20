@@ -9,14 +9,13 @@ export enum Operator {
   LT = 'lt',
   LTE = 'lte',
   EQ = 'eq',
-  NE = 'ne',
-  LIKE = 'like',
+  NE = 'ne'
 }
 
 export type Filtered<T> = T & {
-  whereField?: string
+  whereField?: keyof T
   whereOperation?: Operator
-  whereValue?: string
+  whereValue?: string | number | Date
 }
 
 export enum OrderDirection {

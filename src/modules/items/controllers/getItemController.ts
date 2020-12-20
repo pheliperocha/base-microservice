@@ -7,11 +7,7 @@ import { Filtered, Pagineted, Sorted } from '../../../utils/types'
 import { IItemRepository } from '../repositories/itemRepository'
 import { Category, Item } from '../types'
 
-type DefaultGetItemParams = {
-  name?: string
-  category?: Category | Category[]
-  value?: number
-}
+type DefaultGetItemParams = Partial<Pick<Item, 'id' | 'category' | 'name'>>
 
 export type GetItemParams = Pagineted<Sorted<Filtered<DefaultGetItemParams>>>
 
@@ -21,12 +17,12 @@ export class GetItemController implements Controller {
   ) { }
 
   schema = Joi.object().keys({
+    id: Joi.string(),
     name: Joi.string(),
     category: Joi.alternatives().try(
       Joi.string().valid(...Object.values(Category)),
       Joi.array().items(Joi.string().valid(...Object.values(Category)))
     ),
-    value: Joi.number(),
 
     ...paginationSchema(),
     ...orderSchema<Item>(['id', 'name', 'value', 'category', 'createdAt', 'updatedAt']),

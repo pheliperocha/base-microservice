@@ -6,7 +6,7 @@ import { StatusCodes, statusCodeToReasonPhrase } from '../../../utils/codes'
 import { log } from '../../../utils/logger'
 
 export const adaptAmqpHandler = (controller: Controller) => {
-  return async (msg: IParsedConsumeMessage): Promise<any> => { // TODO: msg interface
+  return async (msg: IParsedConsumeMessage): Promise<void> => {
     try {
       const httpRequest: HttpRequest = {
         body: msg.content,
