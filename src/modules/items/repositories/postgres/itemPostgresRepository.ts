@@ -5,6 +5,8 @@ import { FindOptions, Op } from 'sequelize'
 import { Operator, OrderDirection } from '../../../../utils/types'
 import { Item } from '../../types'
 import { CreateItemParams } from '../../controllers/createItemController'
+import { UpdateItemParams } from '../../controllers/updateItemController'
+import { isObjectEmpty } from '../../../../utils'
 
 export class ItemPostgresRepository implements IItemRepository {
   constructor(private sequelize: ISequelize) { }
@@ -27,6 +29,27 @@ export class ItemPostgresRepository implements IItemRepository {
       category: itemParams.category,
       value: itemParams.value
     })
+  }
+
+  update = async (itemParams: UpdateItemParams): Promise<Item> => {
+    const db = this.sequelize()
+    const { Item } = db
+
+    let updateParams = {}
+    if (itemParams.name) updateParams = { ...updateParams, name: itemParams.name }
+    if (itemParams.category) updateParams = { ...updateParams, category: itemParams.category }
+    if (itemParams.value) updateParams = { ...updateParams, value: itemParams.value }
+
+    if (isObjectEmpty(updateParams)) throw new Error(`Not provide params to update`)
+
+    const updatedItem = await Item.update(updateParams, {
+      where: {
+        id: itemParams.id
+      },
+      returning: true
+    })
+
+    return updatedItem[1][0]
   }
 
   private getFilter = (itemParams: GetItemParams): FindOptions<Item> => {
