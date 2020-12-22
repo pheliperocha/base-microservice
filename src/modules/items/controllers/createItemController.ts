@@ -3,13 +3,15 @@ import { Controller } from '../../../app/protocols/controller'
 import { HttpRequest, HttpResponse } from '../../../app/protocols/http'
 import { StatusCodes } from '../../../utils/codes'
 import { IItemRepository } from '../repositories/itemRepository'
-import { Category, Item } from '../types'
+import { IItemProducer } from '../services/itemProducer'
+import { Category, Item, ItemsOperationsType } from '../types'
 
 export type CreateItemParams = Pick<Item, 'name' | 'category' | 'value'>
 
 export class CreateItemController implements Controller {
   constructor(
-    private readonly itemRepository: IItemRepository
+    private readonly itemRepository: IItemRepository,
+    private readonly itemProducer: IItemProducer
   ) { }
 
   schema = Joi.object().keys({
@@ -20,6 +22,9 @@ export class CreateItemController implements Controller {
 
   async handle(httpRequest: HttpRequest<CreateItemParams>): Promise<HttpResponse<Item>> {
     const item = await this.itemRepository.create(httpRequest.body)
+
+    this.itemProducer.itemsOperations(ItemsOperationsType.CREATE, item)
+
     return {
       statusCode: StatusCodes.OK,
       body: item

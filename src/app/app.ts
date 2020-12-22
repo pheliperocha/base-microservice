@@ -9,7 +9,6 @@ import routeNotFound from './middleware/routeNotFound'
 import { koaSwagger } from 'koa2-swagger-ui'
 import { swaggerOptions } from './router/swagger'
 import { defineExchanges } from './pubsub/producer'
-import consumers from './pubsub/consumers'
 
 const initializeApp = () => {
   const app = new Koa()
@@ -27,7 +26,6 @@ const initializeApp = () => {
   app.use(routeNotFound())
 
   defineExchanges()
-  consumers()
 
   return app
 }

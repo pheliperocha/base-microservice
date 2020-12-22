@@ -1,5 +1,6 @@
 import { Controller } from '../../../app/protocols/controller'
 import { itemRepository } from '../repositories'
+import { itemProducer } from '../services'
 import { CreateItemController } from './createItemController'
 import { GetItemController } from './getItemController'
 import { UpdateItemController } from './updateItemController'
@@ -9,11 +10,13 @@ const getItemController = (): Controller => new GetItemController(
 )
 
 const createItemController = (): Controller => new CreateItemController(
-  itemRepository()
+  itemRepository(),
+  itemProducer()
 )
 
 const updateItemController = (): Controller => new UpdateItemController(
-  itemRepository()
+  itemRepository(),
+  itemProducer()
 )
 
 export {

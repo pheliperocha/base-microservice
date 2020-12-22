@@ -33,7 +33,7 @@
     "node-fetch": "^2.6.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "pubsub": "file:../libs/pubsub",
+    "pubsub": "file:./libs/pubsub",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {

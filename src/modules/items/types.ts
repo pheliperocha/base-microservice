@@ -13,3 +13,9 @@ export enum Category {
   C = 'c',
   D = 'd',
 }
+
+export enum ItemsOperationsType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete'
+}

@@ -1,7 +1,7 @@
 require('dotenv').config()
 import initializeApp from './app'
 
-const PORT = 8888
+const PORT = 8000
 
 const app = initializeApp()
 app.listen(PORT, () => {

@@ -3,13 +3,15 @@ import { Controller } from '../../../app/protocols/controller'
 import { HttpRequest, HttpResponse } from '../../../app/protocols/http'
 import { StatusCodes } from '../../../utils/codes'
 import { IItemRepository } from '../repositories/itemRepository'
-import { Category, Item } from '../types'
+import { IItemProducer } from '../services/itemProducer'
+import { Category, Item, ItemsOperationsType } from '../types'
 
 export type UpdateItemParams = Pick<Item, 'id'> & Partial<Pick<Item, 'name' | 'category' | 'value'>>
 
 export class UpdateItemController implements Controller {
   constructor(
-    private readonly itemRepository: IItemRepository
+    private readonly itemRepository: IItemRepository,
+    private readonly itemProducer: IItemProducer
   ) { }
 
   schema = Joi.object<UpdateItemParams>().keys({
@@ -21,6 +23,7 @@ export class UpdateItemController implements Controller {
 
   async handle(httpRequest: HttpRequest<UpdateItemParams>): Promise<HttpResponse<Item>> {
     const item = await this.itemRepository.update(httpRequest.body)
+    this.itemProducer.itemsOperations(ItemsOperationsType.UPDATE, item)
     return {
       statusCode: StatusCodes.OK,
       body: item

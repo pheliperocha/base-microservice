@@ -40,6 +40,7 @@ dist/
 # Dependency directories
 node_modules/
 jspm_packages/
+libs/
 
 # Typescript v1 declaration files
 typings/
