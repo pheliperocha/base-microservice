@@ -5,14 +5,14 @@
 - Flexibility
 - Highly Testability
 
-===
+---
 
 ## Entries
 
 - Server (Keep listening)
 - Workers (Faas/CronJobs/Consumers)
 
-===
+---
 
 ## Layers
 
@@ -33,7 +33,7 @@
   - Event
   - Entities
 
-===
+---
 
 ## Entrypoint
 
@@ -66,7 +66,7 @@
   - Kafka
   - Kinesis
 
-===
+---
 
 ## Dataprovider
 
@@ -93,9 +93,9 @@
 
 ## Infra
 
-Kubernetes
-Helm
-Sops
-Terraform
-Docker
-Lambda
+- Kubernetes
+- Helm
+- Sops
+- Terraform
+- Docker
+- Lambda
