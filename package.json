@@ -5,8 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "nodemon --exec ts-node ./src/app/server.dev.ts",
+    "start": "nodemon --exec ts-node ./src/app/servers/server.ts",
     "build": "tsc --build tsconfig.json",
+    "clean": "rm -rf dist node_modules",
     "lint": "tsc --skipLibCheck -p . && eslint . --ext .js,.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +23,7 @@
   "homepage": "https://github.com/Finance-o-Matic/base-microservice#readme",
   "dependencies": {
     "@koa/cors": "^3.1.0",
-    "amqplib": "^0.6.0",
+    "amqplib": "^0.8.0",
     "jayson": "^3.3.4",
     "joi": "^17.3.0",
     "koa": "^2.13.0",
@@ -35,7 +36,8 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "pubsub": "git+ssh://git@github.com/Finance-o-Matic/pubsub.git",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "serverless-http": "^2.7.0"
   },
   "devDependencies": {
     "@types/amqplib": "^0.5.16",
@@ -56,6 +58,6 @@
     "eslint-plugin-import": "^2.22.1",
     "nodemon": "^2.0.6",
     "ts-node": "^9.0.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.3.5"
   }
 }

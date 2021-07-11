@@ -10,7 +10,7 @@ import { koaSwagger } from 'koa2-swagger-ui'
 import { swaggerOptions } from './router/swagger'
 import { defineExchanges } from './pubsub/producer'
 
-const initializeApp = () => {
+const bootstrapServer = () => {
   const app = new Koa()
 
   app.use(koaSwagger(swaggerOptions()))
@@ -30,4 +30,11 @@ const initializeApp = () => {
   return app
 }
 
-export default initializeApp
+const bootstrapWorkers = () => {
+  // TODO: Create bootstrap for workers (errorHandler, Guards, etc)
+}
+
+export {
+  bootstrapServer,
+  bootstrapWorkers
+}
